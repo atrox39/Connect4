@@ -12,22 +12,25 @@
 
 <body>
   <div id="game-info">
-        <span id="player-color-display">Tu Color: Desconocido</span> |
-        <span id="current-turn-display">Turno: Desconocido</span>
-    </div>
-    <canvas id="game" width="680" height="440"></canvas>
+    <span id="player-color-display">Tu Color: Desconocido</span> |
+    <span id="current-turn-display">Turno: Desconocido</span>
+  </div>
+  <canvas id="game" width="680" height="440"></canvas>
+
+  <div class="right-panel">
     <div id="game-id-display">ID de Partida: N/A</div>
     <div id="status-message">Conectando al servidor...</div>
     <div id="controls">
-        <input type="text" id="game-id-input" placeholder="Ingresar ID de Partida">
-        <button id="create-game-btn">Crear Partida</button>
-        <button id="join-game-btn">Unirse a Partida</button>
+      <input type="text" id="game-id-input" placeholder="Ingresar ID de Partida">
+      <button id="create-game-btn">Crear Partida</button>
+      <button id="join-game-btn">Unirse a Partida</button>
     </div>
     <div id="chat-area"></div>
     <div id="chat-input-container">
-        <input type="text" id="chat-message-input" placeholder="Escribe un mensaje de chat...">
-        <button id="send-chat-btn">Enviar</button>
+      <input type="text" id="chat-message-input" placeholder="Escribe un mensaje de chat...">
+      <button id="send-chat-btn">Enviar</button>
     </div>
+  </div>
   <script src="/game.js"></script>
 </body>
 

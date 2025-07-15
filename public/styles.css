@@ -6,84 +6,134 @@
 
 html,
 body {
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  height: 100%;
   background-color: black;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  /* Para añadir controles encima/debajo */
-  font-family: Arial, sans-serif;
   color: white;
-}
-
-canvas {
-  border: 2px solid grey;
-  background-color: #0082FC;
-  margin-bottom: 20px;
-  /* Espacio entre canvas y controles */
+  font-family: Arial, sans-serif;
+  display: flex;
+  flex-direction: column;
+  /* Default to column layout */
+  align-items: center;
+  justify-content: flex-start;
+  /* Align content to the top */
+  overflow-x: hidden;
+  /* Prevent horizontal scroll */
+  padding: 15px;
+  /* Slightly less padding for more space */
 }
 
 #game-info {
   font-size: 1.2em;
   margin-bottom: 10px;
+  text-align: center;
+  flex-shrink: 0;
+  /* Prevent from shrinking */
+}
+
+canvas {
+  border: 2px solid grey;
+  background-color: #0082FC;
+  /* Connect 4 board color */
+  margin-bottom: 15px;
+  max-width: 100%;
+  /* Ensure canvas doesn't exceed screen width */
+  height: auto;
+  /* Maintain aspect ratio */
+  display: block;
+  /* Remove extra space below canvas */
+  flex-shrink: 0;
+  /* Prevent from shrinking */
+}
+
+#game-id-display {
+  font-size: 1.1em;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  color: lightblue;
+  text-align: center;
+  flex-shrink: 0;
+}
+
+#status-message {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  font-size: 1.1em;
+  color: yellow;
+  text-align: center;
+  flex-shrink: 0;
 }
 
 #controls {
   display: flex;
+  flex-direction: row;
+  /* Default to row for larger screens */
+  flex-wrap: wrap;
+  /* Allow items to wrap */
+  justify-content: center;
   gap: 10px;
+  margin-bottom: 15px;
+  width: 100%;
+  max-width: 600px;
+  /* Limit max width of controls */
+  flex-shrink: 0;
 }
 
-#controls input[type="text"] {
-  padding: 8px;
+#controls input {
+  flex-grow: 1;
+  /* Allow input to take available space */
+  min-width: 150px;
+  /* Minimum width for the input field */
+}
+
+#controls input,
+#controls button {
+  padding: 10px;
+  border-radius: 5px;
+  font-size: 1em;
   border: 1px solid #ccc;
-  border-radius: 4px;
-  width: 150px;
 }
 
 #controls button {
-  padding: 8px 15px;
   background-color: #4CAF50;
   color: white;
-  border: none;
-  border-radius: 4px;
   cursor: pointer;
+  flex-shrink: 0;
+  /* Prevent buttons from shrinking too much */
 }
 
 #controls button:hover {
   background-color: #45a049;
 }
 
-#game-id-display {
-  font-size: 1.1em;
-  margin-top: 10px;
-  color: lightblue;
-}
-
-#status-message {
-  margin-top: 10px;
-  font-size: 1.1em;
-  color: yellow;
-}
-
 #chat-area {
-  width: 448px;
-  /* Ancho del canvas */
+  width: 100%;
+  max-width: 448px;
+  /* Match canvas width */
   height: 100px;
+  /* Default height */
   background-color: #333;
   border: 1px solid #555;
-  margin-top: 20px;
+  margin-top: 10px;
   padding: 10px;
-  overflow-y: scroll;
+  overflow-y: auto;
+  /* Allow vertical scroll */
   color: #eee;
   font-size: 0.9em;
+  border-radius: 5px;
+  flex-grow: 1;
+  /* Allow chat to grow and take available space */
+  min-height: 50px;
+  /* Minimum height for chat */
 }
 
 #chat-input-container {
-  margin-top: 5px;
   display: flex;
-  width: 448px;
+  width: 100%;
+  max-width: 448px;
+  /* Match canvas width */
+  margin-top: 5px;
+  flex-shrink: 0;
 }
 
 #chat-input-container input {
@@ -92,6 +142,8 @@ canvas {
   border: 1px solid #555;
   background-color: #222;
   color: white;
+  border-radius: 5px 0 0 5px;
+  font-size: 0.9em;
 }
 
 #chat-input-container button {
@@ -99,6 +151,274 @@ canvas {
   background-color: #007bff;
   color: white;
   border: none;
-  border-radius: 0 4px 4px 0;
+  border-radius: 0 5px 5px 0;
   cursor: pointer;
+  font-size: 0.9em;
+}
+
+/* --- Media Queries for smaller screens (mobile portrait first adjustments) --- */
+
+/* Tablets and larger phones (up to 768px) */
+@media (max-width: 768px) {
+  #game-info {
+    font-size: 1.1em;
+  }
+
+  #game-id-display,
+  #status-message {
+    font-size: 1em;
+  }
+
+  #controls input,
+  #controls button {
+    padding: 9px;
+    font-size: 0.95em;
+  }
+
+  #chat-area {
+    height: 90px;
+    font-size: 0.85em;
+  }
+
+  #chat-input-container input,
+  #chat-input-container button {
+    padding: 7px;
+    font-size: 0.85em;
+  }
+}
+
+/* Small phones (up to 600px) - applies to both portrait and landscape if width is constrained */
+@media (max-width: 600px) {
+
+  html,
+  body {
+    padding: 10px;
+  }
+
+  #game-info {
+    font-size: 1em;
+    margin-bottom: 8px;
+  }
+
+  canvas {
+    margin-bottom: 10px;
+  }
+
+  #controls {
+    flex-direction: column;
+    /* Stack controls vertically */
+    align-items: stretch;
+    /* Stretch buttons to full width */
+    margin-bottom: 10px;
+    max-width: 100%;
+    /* Ensure it takes full width */
+  }
+
+  #controls input,
+  #controls button {
+    padding: 8px;
+    font-size: 0.9em;
+  }
+
+  #game-id-display,
+  #status-message {
+    font-size: 0.9em;
+    margin-top: 5px;
+    margin-bottom: 5px;
+  }
+
+  #chat-area {
+    height: 80px;
+    font-size: 0.8em;
+  }
+
+  #chat-input-container input,
+  #chat-input-container button {
+    padding: 6px;
+    font-size: 0.8em;
+  }
+}
+
+/* Very small phones (e.g., iPhone 5/SE - up to 375px) */
+@media (max-width: 375px) {
+  #game-info {
+    font-size: 0.9em;
+  }
+
+  #game-id-display,
+  #status-message {
+    font-size: 0.8em;
+  }
+
+  #controls input,
+  #controls button {
+    padding: 7px;
+    font-size: 0.85em;
+  }
+
+  #chat-area {
+    height: 70px;
+    font-size: 0.75em;
+  }
+
+  #chat-input-container input,
+  #chat-input-container button {
+    padding: 5px;
+    font-size: 0.75em;
+  }
+}
+
+/* --- Landscape-specific adjustments for mobile devices --- */
+/* This media query targets devices with a max height of 600px AND are in landscape orientation */
+@media (max-height: 600px) and (orientation: landscape) {
+
+  html,
+  body {
+    flex-direction: row;
+    /* Arrange elements in a row for landscape */
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    /* Less padding in landscape */
+    overflow-y: hidden;
+    /* Prevent vertical scroll on body */
+    overflow-x: auto;
+    /* Allow horizontal scroll if content overflows (unlikely with flex grow) */
+  }
+
+  #game-info {
+    position: absolute;
+    /* Position explicitly to avoid affecting flex layout */
+    top: 5px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 0.8em;
+    margin-bottom: 0;
+  }
+
+  #game-id-display {
+    position: absolute;
+    top: 25px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 0.7em;
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+
+  #status-message {
+    position: absolute;
+    top: 45px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 0.7em;
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+
+  canvas {
+    margin-right: 15px;
+    /* Space between canvas and controls/chat */
+    margin-bottom: 0;
+    max-height: calc(100vh - 20px);
+    /* Limit canvas height to viewport height minus padding */
+    width: auto;
+    /* Allow width to adjust based on height for aspect ratio */
+    flex-shrink: 0;
+    /* Keep canvas from shrinking */
+  }
+
+  /* Container for controls and chat, arranged vertically */
+  .right-panel {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    /* Center content vertically in the panel */
+    height: 100%;
+    /* Take full height of body */
+    max-width: 300px;
+    /* Limit width of this panel */
+    flex-grow: 1;
+    /* Allow this panel to grow */
+    padding-left: 10px;
+    /* Padding from canvas */
+  }
+
+  #controls {
+    flex-direction: column;
+    /* Stack controls vertically even in landscape */
+    align-items: stretch;
+    margin-bottom: 10px;
+    gap: 5px;
+    /* Less space between controls */
+    width: 100%;
+    max-width: none;
+    /* No max-width for controls within this panel */
+    flex-shrink: 0;
+  }
+
+  #controls input,
+  #controls button {
+    padding: 7px;
+    font-size: 0.8em;
+  }
+
+  #chat-area {
+    height: auto;
+    /* Let it grow with flex-grow */
+    flex-grow: 1;
+    /* Takes remaining vertical space */
+    min-height: 50px;
+    /* Ensures it's not too small */
+    max-height: calc(100vh - 150px);
+    /* Adjust max height considering other elements */
+    margin-top: 0;
+    /* Remove top margin */
+    font-size: 0.75em;
+    overflow-y: auto;
+    /* Make chat scrollable */
+  }
+
+  #chat-input-container {
+    margin-top: 5px;
+    max-width: none;
+    /* No max-width for chat input within this panel */
+    width: 100%;
+    flex-shrink: 0;
+  }
+
+  #chat-input-container input,
+  #chat-input-container button {
+    padding: 5px;
+    font-size: 0.75em;
+  }
+}
+
+/* Further narrow landscape for very small screens (e.g., iPhone SE landscape) */
+@media (max-height: 400px) and (orientation: landscape) {
+
+  #game-info,
+  #game-id-display,
+  #status-message {
+    font-size: 0.7em;
+  }
+
+  canvas {
+    max-height: calc(100vh - 10px);
+    /* Even tighter height */
+  }
+
+  #chat-area {
+    max-height: calc(100vh - 130px);
+    /* Adjust max height for chat */
+    font-size: 0.7em;
+  }
+
+  #controls input,
+  #controls button,
+  #chat-input-container input,
+  #chat-input-container button {
+    font-size: 0.7em;
+    padding: 4px;
+  }
 }
