@@ -3,7 +3,7 @@ const ctx = game.getContext('2d');
 
 // WebSocket
 let ws;
-const SERVER_ADDRESS = 'ws://localhost:8080'; // Asegúrate de que coincida con tu server.js
+const SERVER_ADDRESS = 'ws://aztekode.cloud:4001'; // Asegúrate de que coincida con tu server.js
 
 let playerColor = null; // 'red' o 'black' (tu color asignado por el servidor)
 let currentTurn = null; // 'red' o 'black' (el turno actual)
