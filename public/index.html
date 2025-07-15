@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="UTF-8">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Connect 4</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+
+<body>
+  <div id="game-info">
+        <span id="player-color-display">Tu Color: Desconocido</span> |
+        <span id="current-turn-display">Turno: Desconocido</span>
+    </div>
+    <canvas id="game" width="680" height="440"></canvas>
+    <div id="game-id-display">ID de Partida: N/A</div>
+    <div id="status-message">Conectando al servidor...</div>
+    <div id="controls">
+        <input type="text" id="game-id-input" placeholder="Ingresar ID de Partida">
+        <button id="create-game-btn">Crear Partida</button>
+        <button id="join-game-btn">Unirse a Partida</button>
+    </div>
+    <div id="chat-area"></div>
+    <div id="chat-input-container">
+        <input type="text" id="chat-message-input" placeholder="Escribe un mensaje de chat...">
+        <button id="send-chat-btn">Enviar</button>
+    </div>
+  <script src="/game.js"></script>
+</body>
+
+</html>

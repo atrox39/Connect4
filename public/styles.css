@@ -1,0 +1,104 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  width: 100vw;
+  height: 100vh;
+  background-color: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  /* Para añadir controles encima/debajo */
+  font-family: Arial, sans-serif;
+  color: white;
+}
+
+canvas {
+  border: 2px solid grey;
+  background-color: #0082FC;
+  margin-bottom: 20px;
+  /* Espacio entre canvas y controles */
+}
+
+#game-info {
+  font-size: 1.2em;
+  margin-bottom: 10px;
+}
+
+#controls {
+  display: flex;
+  gap: 10px;
+}
+
+#controls input[type="text"] {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  width: 150px;
+}
+
+#controls button {
+  padding: 8px 15px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+#controls button:hover {
+  background-color: #45a049;
+}
+
+#game-id-display {
+  font-size: 1.1em;
+  margin-top: 10px;
+  color: lightblue;
+}
+
+#status-message {
+  margin-top: 10px;
+  font-size: 1.1em;
+  color: yellow;
+}
+
+#chat-area {
+  width: 448px;
+  /* Ancho del canvas */
+  height: 100px;
+  background-color: #333;
+  border: 1px solid #555;
+  margin-top: 20px;
+  padding: 10px;
+  overflow-y: scroll;
+  color: #eee;
+  font-size: 0.9em;
+}
+
+#chat-input-container {
+  margin-top: 5px;
+  display: flex;
+  width: 448px;
+}
+
+#chat-input-container input {
+  flex-grow: 1;
+  padding: 8px;
+  border: 1px solid #555;
+  background-color: #222;
+  color: white;
+}
+
+#chat-input-container button {
+  padding: 8px 10px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 0 4px 4px 0;
+  cursor: pointer;
+}
